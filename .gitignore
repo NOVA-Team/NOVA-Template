@@ -5,18 +5,19 @@
 
 # License
 !/LICENSE*
+!/COPYING*
 
 # Sources
 !/src
 
 # github
 !/.gitignore
-!/README.md
+!/*.md
+!/*.markdown
 
 # gradle
-!/build.gradle
+!/*.gradle
 !/build.properties
-!/settings.gradle
 !/gradle.properties
 !/gradlew*
 !/gradle
