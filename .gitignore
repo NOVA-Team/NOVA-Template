@@ -16,7 +16,8 @@
 !/*.markdown
 
 # gradle
-!/*.gradle
+!/build.gradle
+!/settings.gradle
 !/build.properties
 !/gradle.properties
 !/gradlew*
