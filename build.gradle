@@ -1,19 +1,28 @@
 plugins {
-    id "java"
-    id "nova.gradle" version "0.2.6"
+    id "java" //This is a java project, scala and groovy plugins also exist
+    id "nova.gradle" version "0.2.6" //Use the NOVA Gradle plugin version 0.2.6
 }
 
-dependencies {
-    compile nova("0.1.0-SNAPSHOT")
+dependencies { //Dependencies of this project
+    compile nova(nova_version) //Depend on NOVA for compiling
 }
 
-nova {
-    wrappers {
-        "17" {
-            wrapper "nova.core:NOVA-Core-Wrapper-MC1.7:0.1.0-SNAPSHOT"
-        }
-        "18" {
-            wrapper "nova.core:NOVA-Core-Wrapper-MC1.8:0.1.0-SNAPSHOT"
-        }
-    }
+nova { //This block is used for configuring the NOVA Gradle plugin
+	wrappers { //Configures wrapper profiles
+		/**
+		 * This profile is called "17", you can skip the quotes if it's not numbers.
+		 * This profile for example will generate the "run17Client" gradle task and create an IDEA
+		 * config of the same name.
+		 * The name can be changed to your liking.
+		 */
+		//Wrapper profile for MC 1.7.10
+		"17" {
+			wrapper "nova.core:NOVA-Core-Wrapper-MC1.7:${nova_version}"
+		}
+
+		//Wrapper profile for MC 1.8
+		"18" {
+			wrapper "nova.core:NOVA-Core-Wrapper-MC1.8:${nova_version}"
+		}
+	}
 }
