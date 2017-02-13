@@ -1,28 +1,39 @@
 plugins {
-    id "java" //This is a java project, scala and groovy plugins also exist
-    id "nova.gradle" version "0.2.6" //Use the NOVA Gradle plugin version 0.2.6
+	id "java" // This is a java project, scala and groovy plugins also exist
+//	id "jacoco" // Show code coverage report when running tests
+	id "nova.gradle" version "0.2.6" // Use the NOVA Gradle plugin version 0.2.6
 }
 
-dependencies { //Dependencies of this project
-    compile nova(nova_version) //Depend on NOVA for compiling
+repositories {
+	mavenLocal() // Import the maven local repository, needed when the NOVA Maven is down
+}
+
+dependencies { // Dependencies of this project
+	compile nova(nova_version) // Depend on NOVA for compiling
+
+	// Test dependencies, required for unit testing
+//	testCompile "junit:junit:4.12"
+//	testCompile "org.assertj:assertj-core:3.0.0"
+//	testCompile "org.mockito:mockito-core:1.+"
+//	testRuntime 'org.slf4j:slf4j-simple:1.7.10'
 }
 
 nova { //This block is used for configuring the NOVA Gradle plugin
-	wrappers { //Configures wrapper profiles
+	wrappers { // Configures wrapper profiles
 		/**
 		 * This profile is called "17", you can skip the quotes if it's not numbers.
 		 * This profile for example will generate the "run17Client" gradle task and create an IDEA
 		 * config of the same name.
 		 * The name can be changed to your liking.
 		 */
-		//Wrapper profile for MC 1.7.10
+		// Wrapper profile for MC 1.7.10
 		"17" {
-			wrapper "nova.core:NOVA-Core-Wrapper-MC1.7:${nova_version}"
+			wrapper "nova.core:NOVA-Core-Wrapper-MC1.7:$nova_version"
 		}
 
-		//Wrapper profile for MC 1.8
+		// Wrapper profile for MC 1.8
 		"18" {
-			wrapper "nova.core:NOVA-Core-Wrapper-MC1.8:${nova_version}"
+			wrapper "nova.core:NOVA-Core-Wrapper-MC1.8:$nova_version"
 		}
 	}
 }
